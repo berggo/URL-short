@@ -19,15 +19,15 @@ jobs:
         go-version: '1.20'
 
     - name: Build
-      run: go build -v ./URL-short
+      run: go build -v /home/mm/vsprojects/URL-short/URL-short/main.go
 
     - name: Test
-      run: go test -v ./URL-short
+      run: go test -v /home/mm/vsprojects/URL-short/URL-short/main.go
 
     - name: Deploy to Netlify
       uses: netlify/deploy-action@v1
       with:
         token: ${{ secrets.NETLIFY_TOKEN }}
         site-id: ${{ secrets.NETLIFY_SITE_ID }}
-        build-dir: './URL-short'
+        build-dir: '/home/mm/vsprojects/URL-short/URL-short'
         functions-dir: './functions'
