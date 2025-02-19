@@ -7,10 +7,17 @@ on:
 
 jobs:
   build-and-deploy:
-    runs-on: ubuntu-latest
+    runs-on: debian-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-      - name: Build and deploy
+      - name: Install dependencies
         run: |
-          echo "Building and deploying..."
+          npm install
+      - name: Build and deploy
+        uses: netlify/deploy-action@v1
+        with:
+          token: ${{ secrets.NETLIFY_TOKEN }}
+          site-id: ${{ secrets.NETLIFY_SITE_ID }}
+          build-dir: './'
+          functions-dir: './functions'
