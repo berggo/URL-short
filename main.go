@@ -2,12 +2,20 @@ package main
 
 import (
 	"fmt"
+	"io/ioutil"
 	"net/http"
 	"os"
 )
 
 func helloHandler(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprint(w, "Hello")
+	key, err := ioutil.ReadFile("hello.asc")
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	fmt.Fprint(w, string(key))
+	fmt.Fprint(w, "\n\nHello")
 }
 
 func main() {
