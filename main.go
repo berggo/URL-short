@@ -1,32 +1,27 @@
 package main
 
 import (
-	"fmt"
+	"log"
 	"net/http"
-	"os"
+
+	"github.com/berggo/URL-short/router"
+	"github.com/gorilla/mux"
 )
 
-func helloHandler(w http.ResponseWriter, r *http.Request) {
-	data, err := os.ReadFile("hello.asc")
-	if err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
-		return
-	}
-
-	fmt.Fprint(w, string(data))
-	fmt.Fprint(w, "\n\nHello")
-}
-
 func main() {
-	http.HandleFunc("/", helloHandler)
+	// Setup the router from the router package
+	r := router.SetupRouter()
 
-	port := os.Getenv("PORT")
-	if port == "" {
-		port = "8080"
-	}
+	// Log all registered routes
+	r.Walk(func(route *mux.Route, router *mux.Router, ancestors []*mux.Route) error {
+		path, err := route.GetPathTemplate()
+		if err != nil {
+			return err
+		}
+		log.Println("Registered route:", path)
+		return nil
+	})
 
-	if err := http.ListenAndServe(":"+port, nil); err != nil {
-		fmt.Printf("Error starting server: %v\n", err)
-		os.Exit(1)
-	}
+	log.Println("Starting server on 8080")
+	log.Fatal(http.ListenAndServe(":8080", r))
 }
