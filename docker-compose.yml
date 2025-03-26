@@ -1,8 +1,8 @@
-version: '3'
+#version: '3'
 
 services:
   url-shortener:
-    image: berggo/URL-short:latest
+    image: berggo/url-short:latest
     ports:
       - "8080:8080"
     depends_on:

@@ -4,7 +4,7 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/berggo/URL-short/router"
+	"github.com/berggo/url-short/router"
 	"github.com/gorilla/mux"
 )
 

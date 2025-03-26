@@ -1,4 +1,4 @@
-module github.com/berggo/URL-short
+module github.com/berggo/url-short
 
 go 1.23
 

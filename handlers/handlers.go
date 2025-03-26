@@ -5,8 +5,8 @@ import (
 	"net/http"
 	"sort"
 
-	"github.com/berggo/URL-short/models"
-	"github.com/berggo/URL-short/storage"
+	"github.com/berggo/url-short/models"
+	"github.com/berggo/url-short/storage"
 	"github.com/gorilla/mux"
 )
 

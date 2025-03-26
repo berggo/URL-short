@@ -1,7 +1,7 @@
 package router
 
 import (
-	"github.com/berggo/URL-short/handlers"
+	"github.com/berggo/url-short/handlers"
 	"github.com/gorilla/mux"
 )
 
